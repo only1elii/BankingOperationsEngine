@@ -5,6 +5,7 @@ import banking.domain.balance.BalanceCalculator;
 import banking.domain.transaction.Transaction;
 import banking.domain.transaction.TransactionType;
 import banking.exception.InsufficientFundsException;
+import banking.exception.InvalidAmountException;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -14,7 +15,14 @@ import java.util.UUID;
 
 public class BankingOperation {
 
+    public void validateAmount(BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new InvalidAmountException("Amount must be greater than 0");
+        }
+    }
+
     public Transaction deposit(Account account, BigDecimal amount) {
+        validateAmount(amount);
         account.assertCanDeposit();
 
         // Creates random transaction ID.
@@ -33,6 +41,7 @@ public class BankingOperation {
     }
 
     public Transaction withdraw(Account account, BigDecimal amount, List<Transaction> existingTransactions) {
+        validateAmount(amount);
         account.assertCanWithdraw();
         String transactionId = UUID.randomUUID().toString();
         BigDecimal balance = BalanceCalculator.calculateBalance(account.getAccountNumber(), existingTransactions);
@@ -54,7 +63,7 @@ public class BankingOperation {
     }
 
     public List<Transaction> transfer(Account fromAccount, Account toAccount, BigDecimal amount, List<Transaction> existingTransactions) {
-
+        validateAmount(amount);
         List<Transaction> transactions = new ArrayList<>();
         fromAccount.assertCanTransfer();
         toAccount.assertCanDeposit();
