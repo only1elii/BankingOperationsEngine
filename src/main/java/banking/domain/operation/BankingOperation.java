@@ -53,7 +53,7 @@ public class BankingOperation {
         Transaction tx = new Transaction(
                 account.getAccountNumber(),
                 Instant.now(),
-                TransactionType.WITHDRAWAL,
+                TransactionType.WITHDRAW,
                 amount,
                 transactionId,
                 null

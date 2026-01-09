@@ -2,7 +2,7 @@ package banking.domain.transaction;
 
 public enum TransactionType {
     DEPOSIT,
-    WITHDRAWAL,
+    WITHDRAW,
     TRANSFER_CREDIT,
     TRANSFER_DEBIT;
 }

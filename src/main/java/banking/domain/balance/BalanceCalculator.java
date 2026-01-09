@@ -14,7 +14,7 @@ public class BalanceCalculator {
             if (transaction.getAccountNumber().equals(accountNumber)) {
                 if (transaction.getTransactionType() == TransactionType.DEPOSIT) {
                     balance = balance.add(transaction.getTransactionAmount());
-                } else if (transaction.getTransactionType() == TransactionType.WITHDRAWAL) {
+                } else if (transaction.getTransactionType() == TransactionType.WITHDRAW) {
                     balance = balance.subtract(transaction.getTransactionAmount());
                 } else if (transaction.getTransactionType() == TransactionType.TRANSFER_CREDIT) {
                     balance = balance.add(transaction.getTransactionAmount());
