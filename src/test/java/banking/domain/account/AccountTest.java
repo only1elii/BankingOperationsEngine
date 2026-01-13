@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AccountTest {
@@ -46,6 +47,32 @@ class AccountTest {
                 case TRANSFER_CREDIT -> account.assertCanTransfer();
             }
         });
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "PENDING, DEPOSIT",
+            "ACTIVE, DEPOSIT",
+            "ACTIVE, WITHDRAW",
+            "ACTIVE, TRANSFER_DEBIT",
+            "ACTIVE, TRANSFER_CREDIT",
+            "FROZEN, DEPOSIT"
+
+
+    })
+    void validAccountState_AllowsOperations(AccountState state, TransactionType transactionType) {
+        Account account = new Account(UUID.randomUUID().toString(), state);
+
+        assertDoesNotThrow(() -> {
+            switch (transactionType) {
+                case DEPOSIT -> account.assertCanDeposit();
+                case WITHDRAW -> account.assertCanWithdraw();
+                case TRANSFER_DEBIT -> account.assertCanTransfer();
+                case TRANSFER_CREDIT -> account.assertCanTransfer();
+            }
+        });
+
+
     }
 }
 

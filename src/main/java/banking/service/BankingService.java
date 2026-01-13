@@ -1,3 +1,32 @@
+/**
+ * PURPOSE:
+ * Coordinates real-world banking workflows by orchestrating
+ * repositories and domain operations.
+ *
+ * RESPONSIBILITIES:
+ * - Ensure required objects (accounts) exist
+ * - Handle application-level concerns (missing accounts, orchestration)
+ * - Delegate business rule enforcement to the domain layer
+ * - Persist resulting transactions
+ *
+ * Analogy:
+ * - BankingService makes sure the right things happen in the right order
+ *
+ * DOES NOT:
+ * - Enforce business rules directly
+ * - Calculate balances
+ * - Decide if an operation is financially valid
+ * - Store data itself
+ *
+ * USED BY:
+ * - Application entry points (UI, API, controllers)
+ *
+ * WHY THIS EXISTS:
+ * Separates workflow coordination from business logic and persistence,
+ * ensuring clear boundaries between layers and enabling testability.
+ */
+
+
 package banking.service;
 
 import banking.domain.account.Account;

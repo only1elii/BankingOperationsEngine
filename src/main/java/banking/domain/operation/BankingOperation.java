@@ -1,3 +1,27 @@
+/**
+ * PURPOSE:
+ * Encapsulates core banking business rules and domain logic.
+ *
+ * RESPONSIBILITIES:
+ * - Validate operation legality (state rules, amounts, balances)
+ * - Create domain transactions (deposit, withdrawal, transfer)
+ * - Enforce invariants (no overdrafts, valid state transitions)
+ *
+ * DOES NOT:
+ * - Check if accounts exist
+ * - Persist transactions
+ * - Interact with repositories
+ * - Coordinate workflows
+ *
+ * USED BY:
+ * - BankingService
+ *
+ * WHY THIS EXISTS:
+ * Keeps business rules centralized, testable, and independent
+ * of persistence or application-level concerns.
+ */
+
+
 package banking.domain.operation;
 
 import banking.domain.account.Account;

@@ -1,3 +1,30 @@
+/**
+ * PURPOSE:
+ * Acts as an in-memory transaction ledger that permanently records immutable financial events and allows them to be queried later
+ *
+ * RESPONSIBILITIES:
+ * - Persist transactions
+ * - Retrieve transactions by accountNumber
+ *
+ * Analogy:
+ * - A transaction history notebook
+ * - Everytime a transaction happens, a new line is written permanently in that notebook. Can always refer back to it
+ *
+ * DOES NOT:
+ * - Calculate balances
+ * - Enforce rules
+ * - Decide if a transaction is valid
+ *
+ * USED BY:
+ * - BankingService (to persist results)
+ * - BalanceCalculator (indirectly, via service)
+ *
+ * WHY THIS EXISTS:
+ * Allows transaction history to be stored and queried
+ * without tying the system to a database.
+ */
+
+
 package banking.repository.memory;
 
 import banking.domain.transaction.Transaction;

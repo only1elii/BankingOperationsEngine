@@ -1,3 +1,20 @@
+/**
+ * PURPOSE:
+ * Stores Account objects in memory, indexed by accountNumber.
+ *
+ * RESPONSIBILITIES:
+ * - Save accounts
+ * - Retrieve accounts by accountNumber
+ *
+ * USED BY:
+ * - BankingService (to ensure accounts exist before operations)
+ *
+ * WHY THIS EXISTS:
+ * Separates data storage from business logic so the domain
+ * can be tested independently of persistence.
+ */
+
+
 package banking.repository.memory;
 
 import banking.domain.account.Account;
